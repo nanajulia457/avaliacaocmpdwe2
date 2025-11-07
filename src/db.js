@@ -12,3 +12,23 @@ const connection = mysql.createPool({
 });
 
 module.exports = connection;
+
+const db = require('../config');
+
+exports.getById = async (id) => {
+    const pool = await db.connect();
+    const [rows] = await pool.query('SELECT * FROM candidatos WHERE id = ?', [id]);
+    return rows[0];
+};
+
+exports.Candidato = async (id) => {
+    const pool = await db.connect();
+    await pool.query('UPDATE candidatos SET values = values - 1 WHERE id = ?', [id]);
+};
+
+const db = require('../eslintconfig');
+
+exports.getCandidatosotos = async () => {
+    const pool = await db.connect();
+    const [rows] = await pool.query('SELECT * FROM candidatos where values < ')
+    return rows;
